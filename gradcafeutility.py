@@ -129,7 +129,8 @@ def find_results(text):
     # raise an error if the main table isn't found or if there are no rows in the table
     # otherwise return all the rows of the table
     if result_table == None:
-        raise ValueError("Admissions results table not found")
+        no_result = soup.find("section", {"class": "submissions"}).get_text().strip()
+        raise ValueError(no_result)
     else:
         results = result_table.find_all("tr")
         if len(results) < 1:
